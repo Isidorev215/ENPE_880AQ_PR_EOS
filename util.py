@@ -5,6 +5,24 @@ import math
 def convert_f_to_r(temp):
     return temp + 459.67
 
+def to_rankine(value, _from):
+    rankine = 0
+    if _from == "k":
+        rankine = value * 1.8
+    elif _from == "f":
+        rankine = value + 459.67
+    elif _from == "c":
+        rankine = (value + 273.25) * 1.8
+    return round(rankine, 2)
+    
+def to_psi(value, _from):
+    psi = 0
+    if _from == "kpa":
+        psi = value * 0.145038
+    elif _from == "atm":
+        psi = value * 14.6956
+    return round(psi, 2)
+        
 def calculate_tr(temp, temp_c):
     converted_temp = convert_f_to_r(temp)
     converted_temp_c = convert_f_to_r(temp_c)
@@ -26,15 +44,29 @@ def calculate_alpha(w, temp, temp_c):
 def calculate_at(ac, alpha):
     return ac * alpha
 
+
+
+# without the need for conversion to rankine
+def calculate_tr_no_convert(temp, temp_c):
+    return temp / temp_c
+
+def calculate_b_no_convert(temp_c, pressure_c):
+    return (0.07780 * ((10.732 * temp_c) / (pressure_c)))
+
+def calculate_ac_no_convert(temp_c, pressure_c):
+    return (0.45724 * ((10.732 ** 2)* (temp_c ** 2)) / pressure_c)
+
+def calculate_alpha_no_convert(w, temp, temp_c):
+    tr = calculate_tr_no_convert(temp, temp_c)
+    alpha_half = 1 + (0.37464 + (1.54226 * w) - (0.26992 * (w ** 2))) * (1 - (tr ** 0.5))
+    return alpha_half ** 2
+
+def calculate_at_no_convert(ac, alpha):
+    return ac * alpha
+
+
+
 # Trial section functions
-def calculate_A(aT, trial_pressure, sys_temp):
-    temp = convert_f_to_r(sys_temp)
-    return (aT * trial_pressure) / ((10.732 ** 2) * (temp ** 2))
-
-def calculate_B(b, trial_pressure, sys_temp):
-    temp = convert_f_to_r(sys_temp)
-    return (b * trial_pressure) / (10.732 * temp)
-
 def cubic_root_calculation_for_PR_EOS(A, B, print_original=False):
     # define coefficents
     a = 1
@@ -98,6 +130,40 @@ def calculate_xj(z, k, ng):
 def calculate_yj(z, k, nl):
     return z / (1 + (nl * ((1/k) - 1)))
 
+def calculate_aT_per_phase(y, aT, kappa):
+    """y is an list of the yj or xj, aT is an list of aTj and kappa is a matrix (2D list) of te BIP"""
+    n = len(y)
+    aT_sum = 0.0
+    for i in range(n):
+        for j in range(n):
+            aT_sum += y[i] * y[j] * ((aT[i] * aT[j])**(0.5)) * (1.0 - (kappa[i][j]))
+    return aT_sum
+
+def calcuate_b_per_phase(y, b):
+    n = len(y)
+    b_sum = 0.0
+    for i in range(n):
+        b_sum += y[i] * b[i]
+    return b_sum
+
+def calculate_A(aT, trial_pressure, sys_temp):
+    temp = convert_f_to_r(sys_temp)
+    return (aT * trial_pressure) / ((10.732 ** 2) * (temp ** 2))
+
+def calculate_B(b, trial_pressure, sys_temp):
+    temp = convert_f_to_r(sys_temp)
+    return (b * trial_pressure) / (10.732 * temp)
+
+# no convert
+def calculate_A_no_convert(aT, trial_pressure, sys_temp):
+    return (aT * trial_pressure) / ((10.732 ** 2) * (sys_temp ** 2))
+
+def calculate_B_no_convert(b, trial_pressure, sys_temp):
+    return (b * trial_pressure) / (10.732 * sys_temp)
+
+
+
+# miscillenous utilities
 def sum_of_a_key_in_list_of_dict(key, list):
     total_sum = 0
     for item in list:
@@ -112,19 +178,3 @@ def update_key_value(data_list, check_value, target_key, new_value):
         if component['component'] == check_value:
             component[target_key] = new_value
             break
-
-def calculate_aT_per_phase(y, aT, kappa):
-    """y is an list of the yj, aT is an list of aTj and kappa is a matrix (2D list) of te BIP"""
-    n = len(y)
-    aT_sum = 0.0
-    for i in range(n):
-        for j in range(n):
-            aT_sum += y[i] * y[j] * ((aT[i] * aT[j])**(0.5)) * (1.0 - (kappa[i][j]))
-    return aT_sum
-
-def calcuate_b_per_phase(y, b):
-    n = len(y)
-    b_sum = 0.0
-    for i in range(n):
-        b_sum += y[i] * b[i]
-    return b_sum

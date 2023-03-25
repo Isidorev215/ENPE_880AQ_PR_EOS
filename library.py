@@ -32,3 +32,12 @@ def render_multi_index_2D_table(data, outer_column_1, outer_column_2, inner_1, i
     if should_display:
         display(new_df)
     return new_df
+
+def drop_columns(data, columns):
+    """columns to be droped shpuld be an array(list)"""
+    initial_df = pd.DataFrame(data)
+    if all(col in initial_df.columns for col in columns):
+        new_df = initial_df.drop(columns=columns)
+        return new_df
+    else:
+        return initial_df
