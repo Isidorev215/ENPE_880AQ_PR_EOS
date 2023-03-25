@@ -22,46 +22,30 @@ def to_psi(value, _from):
     elif _from == "atm":
         psi = value * 14.6956
     return round(psi, 2)
-        
-def calculate_tr(temp, temp_c):
-    converted_temp = convert_f_to_r(temp)
-    converted_temp_c = convert_f_to_r(temp_c)
-    return converted_temp / converted_temp_c
-
-def calculate_b(temp_c, pressure_c):
-    converted_temp_c = convert_f_to_r(temp_c)
-    return (0.07780 * ((10.732 * converted_temp_c) / (pressure_c)))
-
-def calculate_ac(temp_c, pressure_c):
-    converted_temp_c = convert_f_to_r(temp_c)
-    return (0.45724 * ((10.732 ** 2)* (converted_temp_c ** 2)) / pressure_c)
-
-def calculate_alpha(w, temp, temp_c):
-    tr = calculate_tr(temp, temp_c)
-    alpha_half = 1 + (0.37464 + (1.54226 * w) - (0.26992 * (w ** 2))) * (1 - (tr ** 0.5))
-    return alpha_half ** 2
-
-def calculate_at(ac, alpha):
-    return ac * alpha
-
-
 
 # without the need for conversion to rankine
-def calculate_tr_no_convert(temp, temp_c):
+def calculate_tr(temp, temp_c):
     return temp / temp_c
 
-def calculate_b_no_convert(temp_c, pressure_c):
+def calculate_b(temp_c, pressure_c):
     return (0.07780 * ((10.732 * temp_c) / (pressure_c)))
 
-def calculate_ac_no_convert(temp_c, pressure_c):
+def calculate_ac(temp_c, pressure_c):
     return (0.45724 * ((10.732 ** 2)* (temp_c ** 2)) / pressure_c)
 
-def calculate_alpha_no_convert(w, temp, temp_c):
-    tr = calculate_tr_no_convert(temp, temp_c)
-    alpha_half = 1 + (0.37464 + (1.54226 * w) - (0.26992 * (w ** 2))) * (1 - (tr ** 0.5))
-    return alpha_half ** 2
+def calculate_alpha(w, temp, temp_c, alpha_type=0):
+    tr = calculate_tr(temp, temp_c)
+    if alpha_type == 0:
+        alpha_half = 1 + (0.37464 + (1.54226 * w) - (0.26992 * (w ** 2))) * (1 - (tr ** 0.5))
+        return alpha_half ** 2
+    elif alpha_type == 1:
+        term_a = ( 0.13280 - (0.05052 * w) - ( 0.25948 * (w ** 2)) )
+        term_b = (1 - tr)
+        term_c = ( 0.31355 - (1.86745 * w) - ( 0.52604 * (w ** 2)) )
+        term_d = ( 1 - (tr ** 0.5) )
+        return math.exp( (term_a * term_b) + ( 0.81769 * math.log((1 + (term_c * term_d)) ** 2)) )
 
-def calculate_at_no_convert(ac, alpha):
+def calculate_at(ac, alpha):
     return ac * alpha
 
 
@@ -146,19 +130,12 @@ def calcuate_b_per_phase(y, b):
         b_sum += y[i] * b[i]
     return b_sum
 
-def calculate_A(aT, trial_pressure, sys_temp):
-    temp = convert_f_to_r(sys_temp)
-    return (aT * trial_pressure) / ((10.732 ** 2) * (temp ** 2))
-
-def calculate_B(b, trial_pressure, sys_temp):
-    temp = convert_f_to_r(sys_temp)
-    return (b * trial_pressure) / (10.732 * temp)
 
 # no convert
-def calculate_A_no_convert(aT, trial_pressure, sys_temp):
+def calculate_A(aT, trial_pressure, sys_temp):
     return (aT * trial_pressure) / ((10.732 ** 2) * (sys_temp ** 2))
 
-def calculate_B_no_convert(b, trial_pressure, sys_temp):
+def calculate_B(b, trial_pressure, sys_temp):
     return (b * trial_pressure) / (10.732 * sys_temp)
 
 
