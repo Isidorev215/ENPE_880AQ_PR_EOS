@@ -43,7 +43,7 @@ def calculate_alpha(w, temp, temp_c, alpha_type=0):
         term_b = (1 - tr)
         term_c = ( 0.31355 - (1.86745 * w) - ( 0.52604 * (w ** 2)) )
         term_d = ( 1 - (tr ** 0.5) )
-        return math.exp( (term_a * term_b) + ( 0.81769 * math.log((1 + (term_c * term_d)) ** 2)) )
+        return math.exp( (term_a * term_b) + ( 0.81769 * math.log( (1 + (term_c * term_d)) ** 2 )) )
 
 def calculate_at(ac, alpha):
     return ac * alpha
