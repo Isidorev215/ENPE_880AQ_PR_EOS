@@ -1,0 +1,354 @@
+         ********************************************************************************
+         *                                                                              *
+         *                               WINPROP  2022.10                               *
+         *                          EOS Phase Property Program                          *
+         *                         General Release for Win x64                          *
+         *                            2022-May-26   09:27:26                            *
+         *                                                                              *
+         *                          (c) Copyright 1977 - 2022                           *
+         *                Computer Modelling Group Ltd., Calgary, Canada                *
+         *                             All Rights Reserved                              *
+         *                                                                              *
+         ********************************************************************************
+
+
+         Command-line Arguments:  -dd
+                                  -f one_PC_winprop.dat
+
+ Maximum Dimensions:
+    Component                = 200
+    SCN Group in + Fractions = 200;   Lab. Calculation points  = 300
+    Streams in Process       = 300;   Units in Process         =  20
+    Regression variables     = 150;   Regression data points   = 10000
+ 
+ **FILE NAME:     one_PC_winprop.dat
+ *FILENAMES *OUTPUT *SRFOUT *REGLUMPSPLIT *NONE *GEMOUT *NONE
+            *STARSKV *NONE *GEMZDEPTH *NONE *IMEXPVT *NONE
+ *WINPROP     2022.10
+ 
+ **=-=-=Titles/EOS/Units
+ **REM
+ *TITLE1 ''
+ *TITLE2 ''
+ *TITLE3 ''
+ *UNIT *FIELD
+ *INFEED *MOLE
+ *MODEL *PR *1978
+ 
+ **=-=-=Component Selection/Properties
+ **REM     The composition for assignment 4 while treating heavy oil as five (5) Pcs
+ *NC 6 6
+ *TRANSLATION    1
+ *TRESDEF    69.26
+ *EXCESSPROP  *EOS
+ 
+ *COMPNAME
+ 'C3H8'  'PC1'  'PC2'  'PC3'  'PC4'
+ 'PC5'
+ 
+ *HCFLAG
+ 1  1  1  1  1
+ 1
+ 
+ *PCRIT
+ 41.9  25.81972238  19.6974486029  16.289380208  13.7191009229
+ 13.0282712289
+ 
+ *TCRIT
+ 369.8  652.547300184  751.223202416  833.212584213  935.48096688
+ 1054.87558944
+ 
+ *AC
+ 0.152  0.450707455968  0.638175919332  0.797799422663  0.968746805152
+ 1.04622775146
+ 
+ *MW
+ 44.097  145.162007  218.0898  304.139973  467.018186
+ 818.206225
+ 
+ *VSHIFT
+ 0.0  0.0  0.0  0.0  0.0
+ 0.0
+ 
+ *VSHIF1
+ 0.0  0.0  0.0  0.0  0.0
+ 0.0
+ 
+ *TREFVS
+ 60.0  60.0  60.0  60.0  60.0
+ 60.0
+ 
+ *ZRA
+ 0.2763  0.26284274605  0.256814225434  0.25673831632  0.268229910098
+ 0.314214061153
+ 
+ *VCRIT
+ 0.203  0.523019625123  0.73938398026  0.934708399866  1.16474070072
+ 1.3392808323
+ 
+ *VISVC
+ 0.203  0.523019625123  0.73938398026  0.934708399866  1.16474070072
+ 1.3392808323
+ 
+ *OMEGA
+ 0.457235528921  0.457235528921  0.457235528921  0.457235528921  0.457235528921
+ 0.457235528921
+ 
+ *OMEGB
+ 0.0777960739039  0.0777960739039  0.0777960739039  0.0777960739039  0.0777960739039
+ 0.0777960739039
+ 
+ *BETA_LFU
+ 1.0  1.0  1.0  1.0  1.0
+ 1.0
+ 
+ *SG
+ 0.507  0.825816  0.887008  0.941769  1.017896
+ 1.128455
+ 
+ *TB
+ -43.69  368.862535228  547.193875282  698.075325459  881.459320105
+ 1070.28254247
+ 
+ *PCHOR
+ 150.3  411.114864402  588.391100099  767.469641802  1017.23557146
+ 1158.59096817
+ 
+ *IGHCOEF
+ 0.68715  0.160304  0.000126084  1.8143e-07  -9.18913e-11  1.35485e-14  0.260903
+ 0.0  -0.0632712887221  0.000426389993991  -6.69820175995e-08  0.0  0.0  0.0
+ 0.0  -0.0543977099707  0.000411107967654  -6.38913119432e-08  0.0  0.0  0.0
+ 0.0  -0.0480678204178  0.0003950890758  -6.08811738826e-08  0.0  0.0  0.0
+ 0.0  -0.0412398678412  0.000369601249099  -5.584070514e-08  0.0  0.0  0.0
+ 0.0  -0.0512414630594  0.000348798017292  -5.12348508296e-08  0.0  0.0  0.0
+ 
+ *HEATING_VALUES
+ 2105.16002783  0.0  0.0  0.0  0.0
+ 0.0
+ 
+ *IDCOMP
+ 5  -2  -3  -4  -5
+ -6
+ 
+ *VISCOR   *HZYT
+ *MIXVC   1.0
+ 
+ *VISCOEFF
+ 0.1023  0.023364  0.058533  -0.040758  0.0093324
+ *HREFCOR   *HARVEY
+ 
+ *PVC3    1.2
+ 
+ 
+ **=-=-=Composition
+ **REM     Composition of propane and heavy oil splitted and lumped into 5 PCS
+ *COMPOSITION   *PRIMARY
+ 0.5794   0.109419   0.094422   0.084218   0.078962
+ 0.045332
+ 
+ **=-=-=Saturation Pressure
+ *PRESSAT
+ *LABEL    ''
+ *FEED  *MIXED 1.0
+ *KVALUE  *INTERNAL
+ *LEVEL 1
+ *OUTPUT 1
+ *PRES 100.0
+ *TEMP 69.26
+ *SATFLAG 2
+ 
+ **=-=-=Saturation Pressure
+ *PRESSAT
+ *LABEL    ''
+ *FEED  *MIXED 1.0
+ *KVALUE  *INTERNAL
+ *LEVEL 1
+ *OUTPUT 1
+ *PRES 100.0
+ *TEMP 69.26
+ *SATFLAG 2
+ 
+ **=-=-=     END
+1
+  **************************************************
+  *                                                *
+  *                WINPROP  2022.10                *
+  *             2022-May-26   09:27:26             *
+  * Computer Modelling Group Ltd., Calgary, Canada *
+  *                        1                       *
+  **************************************************
+  Saturation pressure calculation
+
+  Equilibrium Properties at     93.604   psia and   69.260 deg F
+      Phase Split: Liquid-Vapour                      
+
+  Peng-Robinson Equations of State
+
+                               mole percent  
+                       -------------------------------
+           component      Feed     Phase01    Phase02
+
+           C3H8         58.42180   58.42180   99.99722
+           PC1          11.03289   11.03289    0.00277
+           PC2           9.52072    9.52072    0.00001
+           PC3           8.49183    8.49183    0.00000
+           PC4           7.96186    7.96186    0.00000
+           PC5           4.57090    4.57090    0.00000
+                       ...............................
+       Phase Mole %               100.00000    0.00000
+
+                               mass percent  
+                       -------------------------------
+
+           C3H8         15.80979   15.80979   99.99084
+           PC1           9.82844    9.82844    0.00912
+           PC2          12.74228   12.74228    0.00004
+           PC3          15.84956   15.84956    0.00000
+           PC4          22.81868   22.81868    0.00000
+           PC5          22.95125   22.95125    0.00000
+                       ...............................
+       Phase Mass %               100.00000    0.00000
+
+                               volume percent
+                       -------------------------------
+
+           C3H8                    27.01388   99.99985
+           PC1                     10.71128    0.00015
+           PC2                     13.51375    0.00000
+           PC3                     15.89607    0.00000
+           PC4                     19.60616    0.00000
+           PC5                     13.25886    0.00000
+                       ...............................
+       Phase Volume %             100.00000    0.00000
+ 
+           component       ln (fug, atm)     K-values w.r.t. phase 1
+                                            --------------------------
+                                            Phase01/02       Phase02
+ 
+           C3H8              1.73670E+00    5.84234E-01    1.71164E+00
+           PC1              -9.21615E+00    3.98215E+03    2.51121E-04
+           PC2              -1.52725E+01    1.07497E+06    9.30263E-07
+           PC3              -2.14193E+01    3.27525E+08    3.05320E-09
+           PC4              -2.99377E+01    1.00685E+12    9.93194E-13
+           PC5              -3.90907E+01    3.73263E+15    2.67907E-16
+
+                                   liquid    vapour
+ Z-factor                           0.0470     0.8798
+ Molar vol, m3/kmol     0.17811   0.17811   3.33063
+ MW, g/mol              162.951    162.95     44.10
+ Ideal H,BTU/lbmol    13486.045  13486.04   6216.35
+ Enthalpy,BTU/lbmol   -7316.047  -7316.05   5869.05
+ Ideal Cp, BTU/lbmol-R             52.0919    17.5016
+ Cp, BTU/lbmol-R                   65.6574    18.6894
+ Ideal S, BTU/lbmol-R              46.7718    64.3296
+ Entropy, BTU/lbmol-R              23.2697    63.9011
+ Density, lb/ft3                   57.1156     0.8266
+ Viscosity, cp                  2.992E-01 8.718E-03
+ IFT (Ref: Liquid    ), dyne/cm               20.7793
+Phase Volume %                   100.0000    0.0000
+Phase Mole %                     100.0000    0.0000
+
+ Enthalpy is zero for ideal gas at absolute zero
+ Interfacial tension, IFT, is referenced to phase 1
+
+ Convergence status :
+    Total iterations in phase equilibrium calculation       3
+    Total iterations in phase stability test               37
+    Residual sum of squares error                 4.97885E-27
+1
+  **************************************************
+  *                                                *
+  *                WINPROP  2022.10                *
+  *             2022-May-26   09:27:26             *
+  * Computer Modelling Group Ltd., Calgary, Canada *
+  *                        1                       *
+  **************************************************
+  Saturation pressure calculation
+
+  Equilibrium Properties at     93.604   psia and   69.260 deg F
+      Phase Split: Liquid-Vapour                      
+
+  Peng-Robinson Equations of State
+
+                               mole percent  
+                       -------------------------------
+           component      Feed     Phase01    Phase02
+
+           C3H8         58.42180   58.42180   99.99722
+           PC1          11.03289   11.03289    0.00277
+           PC2           9.52072    9.52072    0.00001
+           PC3           8.49183    8.49183    0.00000
+           PC4           7.96186    7.96186    0.00000
+           PC5           4.57090    4.57090    0.00000
+                       ...............................
+       Phase Mole %               100.00000    0.00000
+
+                               mass percent  
+                       -------------------------------
+
+           C3H8         15.80979   15.80979   99.99084
+           PC1           9.82844    9.82844    0.00912
+           PC2          12.74228   12.74228    0.00004
+           PC3          15.84956   15.84956    0.00000
+           PC4          22.81868   22.81868    0.00000
+           PC5          22.95125   22.95125    0.00000
+                       ...............................
+       Phase Mass %               100.00000    0.00000
+
+                               volume percent
+                       -------------------------------
+
+           C3H8                    27.01388   99.99985
+           PC1                     10.71128    0.00015
+           PC2                     13.51375    0.00000
+           PC3                     15.89607    0.00000
+           PC4                     19.60616    0.00000
+           PC5                     13.25886    0.00000
+                       ...............................
+       Phase Volume %             100.00000    0.00000
+ 
+           component       ln (fug, atm)     K-values w.r.t. phase 1
+                                            --------------------------
+                                            Phase01/02       Phase02
+ 
+           C3H8              1.73670E+00    5.84234E-01    1.71164E+00
+           PC1              -9.21615E+00    3.98215E+03    2.51121E-04
+           PC2              -1.52725E+01    1.07497E+06    9.30263E-07
+           PC3              -2.14193E+01    3.27525E+08    3.05320E-09
+           PC4              -2.99377E+01    1.00685E+12    9.93194E-13
+           PC5              -3.90907E+01    3.73263E+15    2.67907E-16
+
+                                   liquid    vapour
+ Z-factor                           0.0470     0.8798
+ Molar vol, m3/kmol     0.17811   0.17811   3.33063
+ MW, g/mol              162.951    162.95     44.10
+ Ideal H,BTU/lbmol    13486.045  13486.04   6216.35
+ Enthalpy,BTU/lbmol   -7316.047  -7316.05   5869.05
+ Ideal Cp, BTU/lbmol-R             52.0919    17.5016
+ Cp, BTU/lbmol-R                   65.6574    18.6894
+ Ideal S, BTU/lbmol-R              46.7718    64.3296
+ Entropy, BTU/lbmol-R              23.2697    63.9011
+ Density, lb/ft3                   57.1156     0.8266
+ Viscosity, cp                  2.992E-01 8.718E-03
+ IFT (Ref: Liquid    ), dyne/cm               20.7793
+Phase Volume %                   100.0000    0.0000
+Phase Mole %                     100.0000    0.0000
+
+ Enthalpy is zero for ideal gas at absolute zero
+ Interfacial tension, IFT, is referenced to phase 1
+
+ Convergence status :
+    Total iterations in phase equilibrium calculation       3
+    Total iterations in phase stability test               37
+    Residual sum of squares error                 4.97885E-27
+
+
+ WinProp 2022.10 
+ Total EOS calls without derivatives =       122
+ Total EOS calls with    derivatives =       244
+ Total calculations performed        =         4
+
+  CPU seconds used            :    0.03
+
+  Date and Time of End of Run:  Mar 28, 2023  19:46:45
+
